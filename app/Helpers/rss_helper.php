@@ -66,6 +66,7 @@ if (! function_exists('get_rss_feed')) {
 
         // the last build date corresponds to the creation of the feed.xml cache
         $channel->addChild('lastBuildDate', (new Time('now'))->format(DATE_RFC1123));
+        $channel->addChild('generator', 'Fijjy Podcast Manager by Scient Systems (https://scientsystems.com/fijjy)');
         $channel->addChild('docs', 'https://cyber.harvard.edu/rss/rss.html');
 
         if ($podcast->guid === '') {
