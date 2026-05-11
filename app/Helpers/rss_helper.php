@@ -21,7 +21,7 @@ use Modules\PremiumPodcasts\Entities\Subscription;
 
 if (! function_exists('get_rss_feed')) {
     /**
-     * Generates the rss feed for a given podcast entity
+     * Generates the rss feed for a given podcast entity.
      *
      * @param string $serviceSlug The name of the service that fetches the RSS feed for future reference when the audio file is eventually downloaded
      * @return string rss feed as xml
