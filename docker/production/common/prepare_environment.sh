@@ -282,6 +282,27 @@ EOF
 	fi
 fi
 
+# Add REST API configuration if CP_RESTAPI_ENABLED is set
+if [ "${CP_RESTAPI_ENABLED}" = "true" ]
+then
+	cat << EOF >> $ENV_FILE_LOCATION
+restapi.enabled=true
+EOF
+
+	if [ "${CP_RESTAPI_BASICAUTH}" = "true" ]
+	then
+		if [ -z "${CP_RESTAPI_USERNAME}" ] || [ -z "${CP_RESTAPI_PASSWORD}" ]
+		then
+			log_error "CP_RESTAPI_USERNAME and CP_RESTAPI_PASSWORD must be set when CP_RESTAPI_BASICAUTH is true"
+		fi
+		cat << EOF >> $ENV_FILE_LOCATION
+restapi.basicAuth=true
+restapi.basicAuthUsername=${CP_RESTAPI_USERNAME}
+restapi.basicAuthPassword=${CP_RESTAPI_PASSWORD}
+EOF
+	fi
+fi
+
 echo "Using config:"
 cat $ENV_FILE_LOCATION
 
