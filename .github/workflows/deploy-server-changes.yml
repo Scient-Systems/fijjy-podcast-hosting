@@ -1,0 +1,28 @@
+name: Deploy on server-changes
+
+on:
+  push:
+    branches:
+      - server-changes
+
+jobs:
+  deploy:
+    name: Deploy to VPS
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Run deploy commands on VPS over SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ vars.VPS_HOST }}
+          username: ${{ vars.VPS_USER }}
+          password: ${{ secrets.VPS_PASSWORD }}
+          port: ${{ vars.VPS_PORT }}
+          script_stop: true
+          script: |
+            set -e
+            cd castopod/castopod
+            git pull
+            cd ..
+            docker compose down
+            docker compose up -d --build
