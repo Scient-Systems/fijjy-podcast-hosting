@@ -106,15 +106,15 @@ if (! function_exists('get_rss_feed')) {
             $channel->addChild('previousUrl', $podcast->imported_feed_url, RssFeed::PODCAST_NAMESPACE);
         }
 
-        foreach ($podcast->podcasting_platforms as $podcastingPlatform) {
-            $podcastingPlatformElement = $channel->addChild('id', null, RssFeed::PODCAST_NAMESPACE);
-            $podcastingPlatformElement->addAttribute('platform', $podcastingPlatform->slug);
-            if ($podcastingPlatform->account_id !== null) {
-                $podcastingPlatformElement->addAttribute('id', $podcastingPlatform->account_id);
-            }
+        // foreach ($podcast->podcasting_platforms as $podcastingPlatform) {
+        //     $podcastingPlatformElement = $channel->addChild('id', null, RssFeed::PODCAST_NAMESPACE);
+        //     $podcastingPlatformElement->addAttribute('platform', $podcastingPlatform->slug);
+        //     if ($podcastingPlatform->account_id !== null) {
+        //         $podcastingPlatformElement->addAttribute('id', $podcastingPlatform->account_id);
+        //     }
 
-            $podcastingPlatformElement->addAttribute('url', $podcastingPlatform->link_url);
-        }
+        //     $podcastingPlatformElement->addAttribute('url', $podcastingPlatform->link_url);
+        // }
 
         $castopodSocialElement = $channel->addChild('social', null, RssFeed::PODCAST_NAMESPACE);
         $castopodSocialElement->addAttribute('priority', '1');
