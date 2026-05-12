@@ -230,7 +230,8 @@ if (! function_exists('get_rss_feed')) {
         );
 
         $channel->addChild('author', $podcast->publisher ?: $podcast->owner_name, RssFeed::ITUNES_NAMESPACE, false);
-        $channel->addChild('link', $podcast->link);
+        // $image->addChild('link', $podcast->link);
+        $channel->addChild('link', 'https://mentoringdevelopers.com/podcast/feed');
 
         $owner = $channel->addChild('owner', null, RssFeed::ITUNES_NAMESPACE);
 
